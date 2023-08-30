@@ -8,7 +8,7 @@ export class dashboardController extends Controller {
 
     async init(app) {
         const args = {
-            method: 'alert()',
+            name: 'dashboard',
         }
         await this.render(app, args);
     }

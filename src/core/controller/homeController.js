@@ -8,7 +8,7 @@ export class homeController extends Controller {
 
     async init(app) {
         const args = {
-            name: 'cazal',
+            name: 'home',
         }
         await this.render(app, args);
     }

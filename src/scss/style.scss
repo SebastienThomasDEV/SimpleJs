@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@mixin link {
+  color: cyan;
+}
+
+[data-src] {
+  @include link;
+}
