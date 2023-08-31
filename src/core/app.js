@@ -16,8 +16,8 @@ export default class App {
     }
 
     set_base_url(url) {
-        window.location.hash = url;
         this.base_url = url;
+        window.location.hash = url;
     }
 
     get_base_url() {

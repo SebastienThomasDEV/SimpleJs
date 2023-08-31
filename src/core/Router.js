@@ -27,7 +27,7 @@ export default class Router {
         }
         return await import(`./Controller/${route.controller}.js`)
             .then(controller => {
-                new controller[route.controller](this.app, route.template_path);
+                new controller[route.controller](this.app, route.component_path);
                 return true;
             }).catch(() => {
                 throw new Error(`${active_route}Controller not found try to create it or check if it's imported in the routes.js file`);

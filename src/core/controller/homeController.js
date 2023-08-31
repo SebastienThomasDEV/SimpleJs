@@ -1,14 +1,14 @@
 import Controller from "./Controller.js";
 
 export class homeController extends Controller {
-    constructor(app, template_path) {
-        super(app, template_path);
+    constructor(app, component_path) {
+        super(app, component_path);
         this.init(app);
     }
 
     async init(app) {
         const args = {
-            name: 'home',
+            name: 'test',
         }
         await this.render(app, args);
     }

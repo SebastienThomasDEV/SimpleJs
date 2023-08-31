@@ -1,12 +1,12 @@
 export const routes = [
     {
         name: '#home', // used to identify the controller
-        template_path: '../src/core/templates/home.html', // the templates source
+        component_path: '../src/core/components/home.html', // the components source
         controller: 'homeController', // the controller name
     },
     {
         name: '#dashboard',
-        template_path: '../src/core/templates/dashboard.html',
+        component_path: '../src/core/components/dashboard.html',
         controller: 'dashboardController',
     }
 ];

@@ -1,19 +1,20 @@
 
 
 export default class Parser {
-    static bind(template, args) {
+    static bind(component, args) {
         let regex = /{{(.*?)}}/g;
-        let matches = template.match(regex);
+        let matches = component.match(regex);
         if (matches) {
             matches.forEach(match => {
                 let key = match.replace('{{', '').replace('}}', '').replace(/ /g, '')
                 if (args[key]) {
-                    template = template.replace(match, args[key])
+                    component = component.replace(match, args[key])
                 } else {
-                    template = template.replace(match, '')
+                    component = component.replace(match, '')
+                    console.error(`Key ${key} not found in args`)
                 }
             });
         }
-        return template;
+        return component;
     }
 }

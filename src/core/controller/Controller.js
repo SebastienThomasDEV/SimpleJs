@@ -2,14 +2,14 @@
 import Parser from "../Parser.js";
 
 export default class Controller {
-    constructor(app, template_path) {
+    constructor(app, component_path) {
         this.app = app;
-        this.template_path = template_path;
+        this.component_path = component_path;
     }
 
-    async load_template() {
+    async load_component() {
         try {
-            const response = await fetch(this.template_path);
+            const response = await fetch(this.component_path);
             return response.text();
         } catch (error) {
             throw new Error(error);
@@ -22,9 +22,9 @@ export default class Controller {
 
     async render(app, args) {
         this.clear_app(app);
-        await this.load_template().then(
-            loaded_template => {
-                app.dom.insertAdjacentHTML('afterbegin', Parser.bind(loaded_template, args));
+        await this.load_component().then(
+            loaded_component => {
+                app.dom.insertAdjacentHTML('afterbegin', Parser.bind(loaded_component, args));
                 this.search_links().forEach(link => {
                     link.addEventListener('click', () => {
                         window.location.hash = link.dataset.src;
