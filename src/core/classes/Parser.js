@@ -1,5 +1,4 @@
 
-
 export default class Parser {
     static bind(component, args) {
         let regex = /{{(.*?)}}/g;

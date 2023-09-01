@@ -1,12 +1,17 @@
+import Route from "./classes/Route.js";
+
+
 export const routes = [
-    {
-        name: '#home', // used to identify the controller
-        component_path: '../src/core/components/home.html', // the components source
-        controller: 'homeController', // the controller name
-    },
-    {
-        name: '#dashboard',
-        component_path: '../src/core/components/dashboard.html',
-        controller: 'dashboardController',
-    }
-];
+    new Route(
+        'home',
+        '../src/core/components/home/home.html',
+        '../src/core/components/home/styles.css',
+        'homeController',
+    ),
+    new Route(
+        'dashboard',
+        '../src/core/components/dashboard/dashboard.html',
+        '../src/core/components/dashboard/styles.css',
+        'dashboardController',
+    )
+]

@@ -2,10 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@mixin link {
-  color: cyan;
-}
-
 [data-src] {
-  @include link;
+  color: crimson;
+  cursor: pointer;
 }

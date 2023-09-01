@@ -1,9 +1,13 @@
 import Controller from "./Controller.js";
 
 export class dashboardController extends Controller {
-    constructor(app, component_path) {
-        super(app, component_path);
+    constructor(app, component) {
+        super(app, component);
         this.init(app);
+    }
+
+    createInstance() {
+
     }
 
     async init(app) {
