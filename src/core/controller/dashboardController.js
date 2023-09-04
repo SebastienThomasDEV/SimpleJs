@@ -6,13 +6,9 @@ export class dashboardController extends Controller {
         this.init(app);
     }
 
-    createInstance() {
-
-    }
-
     async init(app) {
         const args = {
-            name: 'dashboard',
+            title: 'dashboard',
         }
         await this.render(app, args);
     }
