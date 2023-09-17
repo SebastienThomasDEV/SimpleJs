@@ -1,5 +1,8 @@
 <h1>{{ title }}</h1>
-<div data-src="home"> vers le home</div>
-{loop color in [colors]}
-    <div>bam</div>
-{endloop}
+<div data-src="test"> vers le home</div>
+<loop [tests] as test>
+    <content>
+        <h2>{{ test.title }}</h2>
+        <p>{{ test.content }}</p>
+    </content>
+</loop>
