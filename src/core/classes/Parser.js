@@ -1,9 +1,9 @@
 
 
 export default class Parser {
-    static bind(component, args) {
-        const args_matches = this.seek_args(component)
-        const loop_matches = this.seek_loop(component)
+    static bind(html, args) {
+        const args_matches = this.seek_args(html)
+        const loop_matches = this.seek_loop(html)
         if (loop_matches) {
             console.log(loop_matches)
         }
@@ -11,38 +11,48 @@ export default class Parser {
             args_matches.forEach(match => {
                 let key = match.replace('{{', '').replace('}}', '').replace(/ /g, '')
                 if (args[key]) {
-                    component = component.replace(match, args[key])
+                    html = html.replace(match, args[key])
                 } else {
-                    component = component.replace(match, '')
+                    html = html.replace(match, '')
                     console.error(`Key ${key} not found in args`)
                 }
             });
         }
-        return component;
+        return html;
     }
 
-    static seek_loop(component) {
+    static seek_loop(html) {
         const loop_regex =   /<loop\s*\[(.*?)\]\s+as\s+(\w+)>([\s\S]*?)<\/loop>/g;
-        const matches = component.match(loop_regex);
+        const content_regex = /<content>([\s\S]*?)<\/content>/;
+        const matches = html.match(loop_regex);
         if (matches) {
-            for (const match of matches) {
-                const attributeMatch = match.match(/\[(.*?)\]/);
-                const contentMatch = match.match(/<loop>[\s\S]*?<\/loop>/);
-                const attributes = attributeMatch ? attributeMatch[1].trim() : '';
-                const content = contentMatch ? contentMatch[0].replace(/<\/?loop>/g, '').trim() : '';
-                console.log(`Attributs : ${attributes}`);
-                console.log(content);
+            const loops = [];
+            for (let i = 0; i < matches.length; i++) {
+                const match = matches[i];
+                const content = this.clean(content_regex.exec(match)[1]);
+                const loop_args = this.clean(loop_regex.exec(match)[1]);
+                const alias = loop_regex.exec(match);
+                loops.push({
+                    content: content,
+                    args: loop_args,
+                    alias: alias
+                })
             }
+            return loops;
         }
     }
 
-    static seek_args(component) {
+    static seek_args(html) {
         const args_regex = /{{(.*?)}}/g;
-        return args_regex.exec(component);
+        return args_regex.exec(html);
     }
 
-    static escape_spaces(component) {
-        return component.replace(/ /g, '')
+    static clean(html) {
+        return html.replace(/(\r\n|\n|\r)/gm, "").replace(/ +(?= )/g,'');
+    }
+
+    static sanitize(html) {
+        return html.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, "");
     }
 
 }
