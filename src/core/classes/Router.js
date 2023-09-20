@@ -1,4 +1,4 @@
-
+// Import tailwind methods to render html with tailwind classes
 
 export default class Router {
     constructor(app, routes) {

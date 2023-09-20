@@ -49,6 +49,7 @@ export default class Route {
         return this.component_assets;
     }
 
-
-
+    reload() {
+        this.controller.reload();
+    }
 }

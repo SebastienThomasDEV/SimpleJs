@@ -9,7 +9,45 @@ export class dashboardController extends Controller {
     async init(app) {
         const args = {
             title: 'test',
+            banx: 'banx',
+            tests: [
+                {
+                    name: 'test1',
+                    content: 'content1'
+                },
+                {
+                    name: 'test2',
+                    content: 'content2'
+                },
+                {
+                    name: 'test2',
+                    content: 'content2'
+                },
+                {
+                    name: 'test2',
+                    content: 'content2'
+                },
+                {
+                    name: 'test2',
+                    content: 'content2'
+                },
+                {
+                    name: 'test2',
+                    content: 'content2'
+                },
+            ],
+            variables: [
+                {
+                    name: 'var1',
+                    content: 'var_content1'
+                },
+                {
+                    name: 'var2',
+                    content: 'var_content2'
+                },
+            ]
         }
+
         await this.render(app, args);
     }
 
