@@ -46,7 +46,7 @@ Il dispose de plusieurs fonctionnalités:
       }
    }
   ```
-- Un système de guard (voir `module Guard`)
+- ## Un système de guard (voir `module Guard`)
   ```js
   export default class AuthGuard extends Guard {
      static async guard(): Promise<boolean> {
@@ -54,7 +54,7 @@ Il dispose de plusieurs fonctionnalités:
      }
   }
   ```
-- Un système de routing (voir `module Router`)
+- ## Un système de routing (voir `module Router`)
   ```js
   <div @redirect="base">base</div> // redirige vers la page base si le composant existe
   ```
