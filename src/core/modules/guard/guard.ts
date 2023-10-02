@@ -30,8 +30,12 @@ export default class Guard {
     }
 
 
-    static async throw_unauthorized_page(path: string) {
-        return await fetch(path).then(response => response.text()).catch(error => console.error(error))
+    static throw_unauthorized_page() {
+        return  '<div>\n' +
+                '    <h1>Erreur 403</h1>\n' +
+                '    <p>Vous n\'avez pas les droits nécessaires pour accéder à cette page.</p>\n' +
+                '    <div @redirect="base">Retourner à la page d\'accueil</div>\n' +
+                '</div>'
     }
 
 

@@ -27,13 +27,10 @@ export class DashboardController extends Controller {
 
     pre_process(params, html) {
         html = Parser.parse(html, params);
-        AuthGuard.guard().then(
-            (res) => {
-                if (!res) {
-                    html = AuthGuard.throw_unauthorized_page('./src/core/modules/guard/error/unauthorized.html');
-                }
-            }
-        )
+        if (AuthGuard.guard().value) {
+            html = AuthGuard.throw_unauthorized_page('./src/core/modules/guard/error/unauthorized.html');
+            AuthGuard.set_auth_token("token");
+        }
         return super.pre_process(params, html);
     }
 

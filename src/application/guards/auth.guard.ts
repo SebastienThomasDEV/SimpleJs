@@ -9,6 +9,6 @@ export default class AuthGuard extends Guard {
      * It overrides the guard method in the Guard class.
      */
     static async guard(): Promise<boolean> {
-        return localStorage.getItem('token') === null;
+        return localStorage.getItem('token') !== null;
     }
 }
