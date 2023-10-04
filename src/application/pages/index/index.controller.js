@@ -1,7 +1,7 @@
 import {Controller} from "../../../core/vendor/controller/controller.ts";
 
 
-export class BaseController extends Controller {
+export class IndexController extends Controller {
     constructor(route) {
         super(route);
         this.init();

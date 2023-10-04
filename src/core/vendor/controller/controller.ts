@@ -1,17 +1,24 @@
 export class Controller {
     dir_name: string;
-    loaded: boolean = false;
     constructor(dir_name: string) {
         this.dir_name = dir_name;
     }
 
-    pre_process(params: any, html: string) {
+    /**
+     * @param params
+     * @param html
+     *
+     * @returns html
+     * @description
+     * This method is called when the controller is initialized.
+     *
+     */
+
+    onInit(params: any, html: string) {
+        console.log("Controller initialized");
         return html;
     }
 
-    async process(params: any) {
-        return this.pre_process(params, await this.load());
-    }
 
     async load() {
         return await fetch(`./src/application/pages/${this.dir_name}/${this.dir_name}.html`).then((response) => {
@@ -21,8 +28,8 @@ export class Controller {
         })
     }
 
-    async render(html: string) {
-        document.body.innerHTML = await this.process(html);
+    async render(params: any) {
+        document.body.innerHTML = this.onInit(params, await this.load());
     }
 
 

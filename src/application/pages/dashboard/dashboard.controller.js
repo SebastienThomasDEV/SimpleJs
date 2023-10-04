@@ -25,13 +25,13 @@ export class DashboardController extends Controller {
         await this.render(this.params);
     }
 
-    pre_process(params, html) {
+    onInit(params, html) {
         html = Parser.parse(html, params);
-        if (AuthGuard.guard().value) {
+        if (!AuthGuard.guard()) {
             html = AuthGuard.throw_unauthorized_page('./src/core/modules/guard/error/unauthorized.html');
             AuthGuard.set_auth_token("token");
         }
-        return super.pre_process(params, html);
+        return super.onInit(params, html);
     }
 
 
