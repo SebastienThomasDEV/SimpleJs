@@ -1,1 +1,6 @@
 <div @redirect="dashboard">dashboard</div>
+
+<form @form="login">
+    <input name="name" placeholder="name" type="text" #login.name>
+    <input name="email" placeholder="email" type="text"  #login.email>
+</form>
