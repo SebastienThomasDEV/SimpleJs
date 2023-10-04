@@ -2,7 +2,7 @@ import {Controller} from "../../vendor/controller/controller";
 
 export default class Router {
 
-    active_controller: Controller|void;
+    active_controller: Promise<Controller | void>
 
 
     constructor(public baseUrl: string) {
@@ -11,15 +11,18 @@ export default class Router {
     }
 
     init() {
-        window.onhashchange = () => {
+        if (window.location.hash.replace('#', '') !== this.baseUrl) {
+            window.location.hash = this.baseUrl;
+        }
+        this.bindToController(this.baseUrl).then(() => this.seek())
+        window.onhashchange = (e) => {
             console.log(window.location.hash.replace('#', ''))
             if (window.location.hash.replace('#', '') !== this.baseUrl) {
                 this.bindToController(window.location.hash.replace('#', '')).then(() => this.seek())
             } else {
-                this.bindToController(this.baseUrl).then(() => this.seek())
+                window.location.hash = this.baseUrl;
             }
         }
-        this.bindToController(this.baseUrl).then(() => this.seek())
     }
 
     seek() {
@@ -36,7 +39,7 @@ export default class Router {
                             window.location.hash = mutations[i].addedNodes[j].attributes['@redirect'].value;
                             delete this.active_controller;
                             observer.disconnect();
-                            this.bindToController(mutations[i].addedNodes[j].attributes['@redirect'].value).then(() => this.seek())
+                            this.active_controller = this.bindToController(mutations[i].addedNodes[j].attributes['@redirect'].value).then(() => this.seek())
                         }
                     }
                 }

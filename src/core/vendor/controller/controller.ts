@@ -21,6 +21,7 @@ export class Controller {
 
 
     async load() {
+        console.log(this.dir_name);
         return await fetch(`./src/application/pages/${this.dir_name}/${this.dir_name}.html`).then((response) => {
             return response.text()
         }).then((html: string) => {
