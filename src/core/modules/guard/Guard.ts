@@ -21,7 +21,7 @@ export default class Guard {
         localStorage.setItem('token', token);
     }
 
-    static get_auth_token(): string {
+    static get_auth_token(): string | null {
         return localStorage.getItem('token') ? localStorage.getItem('token') : 'Token not set';
     }
 

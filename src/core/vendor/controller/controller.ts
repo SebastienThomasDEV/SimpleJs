@@ -31,6 +31,11 @@ export class Controller {
 
     async render(params: any) {
         document.body.innerHTML = this.onInit(params, await this.load());
+        await this.afterInit();
+    }
+
+    async afterInit() {
+        return true;
     }
 
 

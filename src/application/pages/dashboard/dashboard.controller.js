@@ -34,5 +34,9 @@ export class DashboardController extends Controller {
         return super.onInit(params, html);
     }
 
+    async afterInit() {
+        return super.afterInit();
+    }
+
 
 }

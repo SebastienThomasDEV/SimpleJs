@@ -71,9 +71,9 @@ export default class Parser {
         const loop_matches = html.match(/@for=\((.*?)\)(.*?)@endfor/gs);
         if (loop_matches) {
             for (let i = 0; i < loop_matches.length; i++) {
-                let loop = loop_matches[i]
+                let loop = loop_matches[i]!
                 let loop_content = this.clean(loop.replace(/@for=\((.*?)\)/g, '').replace(/@endfor/g, ''))
-                let loop_params = loop.match(/@for=\((.*?)\)/g)[0].replace(/@for=\(/g, '').replace(/\)/g, '').split(',')
+                let loop_params = loop.match(/@for=\((.*?)\)/g)[0].replace(/@for=\(/g, '')!.replace(/\)/g, '')!.split(',')
                 let loop_iterable = loop_params[0].split('=>')[0].trim()
                 let loop_key = loop_params[0].split('=>')[1].trim()
                 let loop_html = ''
