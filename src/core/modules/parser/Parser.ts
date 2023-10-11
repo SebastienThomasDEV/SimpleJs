@@ -19,20 +19,27 @@ export default class Parser {
         html = this.bind_params(html, params)
         return html;
     }
-
+// @ts-ignore
     static bind_condition(html: string, params: any) {
         const condition_matches = html.match(/@if \((.*?)\)(.*?)@endif/gs);
         if (condition_matches) {
             for (let i = 0; i < condition_matches.length; i++) {
+                // @ts-ignore
                 let condition_content = this.clean(condition_matches[i].replace(/@if \((.*?)\):/g, '').replace(/@endif/g, ''))
-                let condition_params = condition_matches[i].match(/@if \((.*?)\)/g)[0].replace(/@if \(/g, '').replace(/\)/g, '').split(',')
+                // @ts-ignore
+                let condition_params = condition_matches[i]
+                    .match(/@if \((.*?)\)/g)[0].replace(/@if \(/g, '').replace(/\)/g, '').split(',')
                 for (let j = 0; j < condition_params.length; j++) {
+                    // @ts-ignore
                     let condition = condition_params[j].trim()
                     for (let k = 0; k < Object.keys(this.operator).length; k++) {
+                        // @ts-ignore
                         if (condition.includes(Object.keys(this.operator)[k])) {
                             let condition_operator = Object.keys(this.operator)[k]
+                            // @ts-ignore
                             let condition_value = condition.split(condition_operator)
                             for (let l = 0; l < condition_value.length; l++) {
+                                // @ts-ignore
                                 condition_value[l] = condition_value[l].trim()
                             }
                             console.log(condition_value)
@@ -73,8 +80,11 @@ export default class Parser {
             for (let i = 0; i < loop_matches.length; i++) {
                 let loop = loop_matches[i]!
                 let loop_content = this.clean(loop.replace(/@for=\((.*?)\)/g, '').replace(/@endfor/g, ''))
+                // @ts-ignore
                 let loop_params = loop.match(/@for=\((.*?)\)/g)[0].replace(/@for=\(/g, '')!.replace(/\)/g, '')!.split(',')
+                // @ts-ignore
                 let loop_iterable = loop_params[0].split('=>')[0].trim()
+                // @ts-ignore
                 let loop_key = loop_params[0].split('=>')[1].trim()
                 let loop_html = ''
                 if (params[loop_iterable]) {

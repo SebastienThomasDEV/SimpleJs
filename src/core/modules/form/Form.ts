@@ -1,5 +1,4 @@
 import {Controller} from "../../vendor/controller/controller";
-import browserslist from "browserslist";
 
 export default class Form {
     inputs: any;
@@ -51,7 +50,8 @@ export default class Form {
 
     submit(values: any, callbackName: string) {
         try {
-            const form = this.controller[`${callbackName}`](values);
+            // @ts-ignore
+            this.controller[`${callbackName}`](values);
 
         } catch (e) {
             console.error("Class method not found in " + this.controller.constructor.name);

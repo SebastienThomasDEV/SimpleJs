@@ -1,7 +1,11 @@
 <div @redirect="index">index</div>
+
+
 @for=(items => item)
-    <div>#item</div>
+    <div @redirect="index">#item</div>
 @endfor
+
+
 
 
 
