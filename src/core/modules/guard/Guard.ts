@@ -17,18 +17,6 @@ export default class Guard {
      */
 
 
-    static set_auth_token(token: string) {
-        localStorage.setItem('token', token);
-    }
-
-    static get_auth_token(): string | null {
-        return localStorage.getItem('token') ? localStorage.getItem('token') : 'Token not set';
-    }
-
-    static remove_auth_token() {
-        localStorage.removeItem('token');
-    }
-
 
     static throw_unauthorized_page() {
         return  '<div>\n' +

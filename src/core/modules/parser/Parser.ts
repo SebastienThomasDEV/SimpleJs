@@ -58,9 +58,31 @@ export default class Parser {
 
     static bind_params(html: string, params: any) {
         const params_matches = html.match(/{{(.*?)}}/g);
+
         if (params_matches) {
             params_matches.forEach(match => {
+
                 let key = match.replace('{{', '').replace('}}', '').replace(/ /g, '')
+                let pipes_regex = new RegExp(`{{${params[key]}\\|(.*)}}`, 'g');
+                let pipe_matches = pipes_regex.exec(match);
+                if (pipe_matches) {
+                    if (match[1] === 'date') {
+                        let date = new Date(params[key]);
+                        params[key] = date.toLocaleDateString();
+                    } else if (match[1] === 'time') {
+                        let date = new Date(params[key]);
+                        params[key] = date.toLocaleTimeString();
+                    } else if (match[1] === 'datetime') {
+                        let date = new Date(params[key]);
+                        params[key] = date.toLocaleString();
+                    } else if (match[1] === 'uppercase') {
+                        params[key] = params[key].toUpperCase();
+                    } else if (match[1] === 'lowercase') {
+                        params[key] = params[key].toLowerCase();
+                    } else if (match[1] === 'capitalize') {
+                        params[key] = params[key].charAt(0).toUpperCase() + params[key].slice(1);
+                    }
+                }
                 if (params[key]) {
                     html = html.replace(match, params[key])
                 } else {
