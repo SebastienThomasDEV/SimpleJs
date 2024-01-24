@@ -1,7 +1,8 @@
+import Quirk from "./core/vendor/Quirk.ts";
 
-import {config} from "./core/config/config.ts";
-import Router from "./core/modules/router/router.ts";
+onload = () => {
+    const app = new Quirk(document.getElementById("app"));
+    const element = app.getRenderer().createElement("h1", {innerText: "Hello World!"})
 
-onload = async () => {
-    const router = new Router("index");
+    app.getRenderer().render(element);
 }

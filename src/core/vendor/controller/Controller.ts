@@ -14,10 +14,7 @@ export class Controller {
      *
      */
 
-    onInit(params: any, html: string) {
-        console.log("Controller initialized");
-        return html;
-    }
+    onInit(params: any, html: string) {}
 
 
     async load() {

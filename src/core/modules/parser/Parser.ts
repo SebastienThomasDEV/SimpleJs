@@ -1,18 +1,18 @@
 export default class Parser {
-    static operator = {
-        'true': function () { return true },
-        'false': function () { return false },
-        '==': function (a: any, b: any) { return a === b },
-        '!=': function (a: any, b: any) { return a !== b },
-        '>': function (a: any, b: any) { return a > b },
-        '<': function (a: any, b: any) { return a < b },
-        '>=': function (a: any, b: any) { return a >= b },
-        '<=': function (a: any, b: any) { return a <= b },
-        '&&': function (a: any, b: any) { return a && b },
-        '||': function (a: any, b: any) { return a || b },
-        'in': function (a: any, b: any) { return a in b },
-        'not in': function (a: any, b: any) { return !(a in b) },
-    }
+    // static operator = {
+    //     'true': function () { return true },
+    //     'false': function () { return false },
+    //     '==': function (a: any, b: any) { return a === b },
+    //     '!=': function (a: any, b: any) { return a !== b },
+    //     '>': function (a: any, b: any) { return a > b },
+    //     '<': function (a: any, b: any) { return a < b },
+    //     '>=': function (a: any, b: any) { return a >= b },
+    //     '<=': function (a: any, b: any) { return a <= b },
+    //     '&&': function (a: any, b: any) { return a && b },
+    //     '||': function (a: any, b: any) { return a || b },
+    //     'in': function (a: any, b: any) { return a in b },
+    //     'not in': function (a: any, b: any) { return !(a in b) },
+    // }
     static parse(html: string, params: any) {
         html = this.bind_condition(html, params)
         html = this.bind_loop(html, params)

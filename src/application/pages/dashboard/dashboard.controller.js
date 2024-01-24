@@ -27,7 +27,7 @@ export class DashboardController extends Controller {
 
     onInit(params, html) {
         html = Parser.parse(html, params);
-        return super.onInit(params, html);
+        return html;
     }
 
     async afterInit() {

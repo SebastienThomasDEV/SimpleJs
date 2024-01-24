@@ -1,9 +1,11 @@
-<div @redirect="index">index</div>
+<div @redirect="">index</div>
+<div @foreach="array as item">index</div>
+<div @if="array as item">index</div>
 
 
-@for=(items => item)
-    <div @redirect="index">#item</div>
-@endfor
+<!--@for=(items => item)-->
+<!--    <div @redirect="index">#item</div>-->
+<!--@endfor-->
 
 
 
