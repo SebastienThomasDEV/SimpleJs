@@ -1,6 +1,6 @@
 
 import Form from "./Form"
-import {Controller} from "../../vendor/controller/controller";
+import {Controller} from "../../vendor/Controller";
 
 export default class FormManager {
     forms: Form[] = [];

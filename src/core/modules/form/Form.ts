@@ -1,4 +1,4 @@
-import {Controller} from "../../vendor/controller/controller";
+import {Controller} from "../../vendor/Controller";
 
 export default class Form {
     inputs: any;
