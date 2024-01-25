@@ -10,7 +10,7 @@ export default class VirtualDomRenderer {
         return { type, attrs: attrs || {}, children };
     }
 
-    render(vNode: any) {
+    render() {
         this.load().then((html: string) => {
             const test = QuirkParser.parseComponant(html);
             console.log(test);

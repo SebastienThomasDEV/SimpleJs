@@ -1,9 +1,7 @@
-export default class ComponantManager {
+export default class ComponentManager {
     private componants: any = [];
-    private componantElements: any = [];
 
     constructor() {
         console.log("ComponantManager initialized");
-        this.init();
     }
 }
